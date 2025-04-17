@@ -1,0 +1,34 @@
+name: Backend Startup Settings
+
+on:
+  schedule:
+    # auto run at 7am EST every Monday
+    - cron: '0 7 * * 1'
+  workflow_dispatch:  
+
+env:
+    DATABASE_CONNECTION_STRING: ${{ secrets.DATABASE_CONNECTION_STRING }}
+jobs:
+  startup-tasks:
+    runs-on: ubuntu-latest
+    env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: install dependencies
+        run: |
+          cd calendar-backend/backend_weekly
+          pip install -r requirements.txt
+          
+      - name: run startup tasks
+        run: |
+          cd calendar-backend/backend_weekly
+          python backend_startup.py 
