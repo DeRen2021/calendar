@@ -25,10 +25,10 @@ jobs:
           
       - name: install dependencies
         run: |
-          cd calendar-backend/backend_weekly
+          cd calendar-backend/
           pip install -r requirements.txt
           
       - name: run startup tasks
         run: |
-          cd calendar-backend/backend_weekly
+          cd calendar-backend/
           python backend_startup.py 
