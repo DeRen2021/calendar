@@ -1,0 +1,12 @@
+.env
+
+calendar_venv/
+
+
+__pycache__/
+
+run_note.txt
+
+test1.ipynb
+
+test.ipynb
